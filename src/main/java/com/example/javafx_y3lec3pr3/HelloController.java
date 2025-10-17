@@ -12,6 +12,11 @@ public class HelloController {
     public ObservableList<String> types = FXCollections.observableArrayList("Земной тип", "Газовый гигант", "Ледяной гигант", "Карликовая планета");
 
     @FXML
+    TextField tfName, tfRadius, tfWeight, tfAmount, tfDistance;
+    @FXML
+    TableView tvMain;
+
+    @FXML
     public ComboBox<String> cbType;
 
     @FXML
@@ -32,6 +37,11 @@ public class HelloController {
 
     @FXML
     protected void Add (javafx.event.ActionEvent actionEvent){
+        if (!tfName.getText().isBlank() && !tfAmount.getText().isBlank() && !tfDistance.getText().isBlank() && !tfRadius.getText().isBlank() && !tfWeight.getText().isBlank()) {
+            Planet oo = new EarthTypePlanet("sd", 2.0,20.0,50.0,60.0);
+            planets.add(oo);
+            tvMain.setItems(planets);
+        }
 
     }
 
