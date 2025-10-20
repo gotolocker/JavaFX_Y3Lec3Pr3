@@ -1,45 +1,67 @@
 package com.example.javafx_y3lec3pr3;
 
-abstract class Planet{
-    private String _name;
-    protected String _type;
-    private double _radius;
-    private double _weight;
-    private double _amount;
-    private double _distance;
+import javafx.beans.property.*;
 
-    public Planet(String name,  double radius, double weight, double amount, double distance){
+public abstract class Planet{
+    private SimpleStringProperty name;
+    protected SimpleStringProperty type;
+    private SimpleDoubleProperty radius;
+    private SimpleDoubleProperty weight;
+    private SimpleIntegerProperty amount;
+    private SimpleDoubleProperty distance;
 
-        this._name = name;
-        this._radius = radius;
-        this._weight = weight;
-        this._amount = amount;
-        this._distance = distance;
 
+
+    public Planet(String name,  double radius, double weight, int amount, double distance){
+        this.name = new SimpleStringProperty(name);
+        this.radius = new SimpleDoubleProperty(radius);
+        this.weight = new SimpleDoubleProperty(weight);
+        this.amount = new SimpleIntegerProperty(amount);
+        this.distance = new SimpleDoubleProperty(distance);
     }
+
+    public String getName() {
+        return name.get();
+    }
+    public String getType() {
+        return type.get();
+    }
+    public Double getRadius() {
+        return radius.get();
+    }
+    public Double getWeight() {
+        return weight.get();
+    }
+    public Integer getAmount() {
+        return amount.get();
+    }
+    public Double getDistance() {
+        return distance.get();
+    }
+
 }
 class EarthTypePlanet extends Planet {
-    public EarthTypePlanet(String name, double radius, double weight, double amount, double distance){
+    public EarthTypePlanet(String name, double radius, double weight, int amount, double distance){
         super(name, radius, weight, amount, distance);
-        this._type = "Земной тип";
+        this.type = new SimpleStringProperty("Земной тип");
     }
 }
 class GasGiant extends Planet {
-    public GasGiant(String name, double radius, double weight, double amount, double distance){
+    public GasGiant(String name, double radius, double weight, int amount, double distance){
         super(name, radius, weight, amount, distance);
-        this._type = "Газовый гигант";
+        this.type = new SimpleStringProperty("Газовый гигант");
     }
 }
 class IceGiant extends Planet {
-    public IceGiant(String name, double radius, double weight, double amount, double distance){
+    public IceGiant(String name, double radius, double weight, int amount, double distance){
         super(name, radius, weight, amount, distance);
-        this._type = "Ледяной гигант";
+        this.type = new SimpleStringProperty("Ледяной гигант");
     }
 }
-class DwarfPlanets extends Planet {
-    public DwarfPlanets(String name, double radius, double weight, double amount, double distance){
+class DwarfPlanet extends Planet {
+    public DwarfPlanet(String name, double radius, double weight, int amount, double distance){
         super(name, radius, weight, amount, distance);
-        this._type = "Карликовая планета";
+        this.type = new SimpleStringProperty("Карликовая планета");
     }
 }
 
