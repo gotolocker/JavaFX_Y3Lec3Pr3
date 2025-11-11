@@ -68,6 +68,16 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </TextField>
+      <ComboBox id="cbType" fx:id="cbType" maxWidth="1.7976931348623157E308" promptText="Выберите тип" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </ComboBox>
+      <TextField id="tfRadius" fx:id="tfRadius" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </TextField>
       <TextField id="tfMass" fx:id="tfWeight" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -75,20 +85,10 @@
       </TextField>
       <Label text="Название" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Label text="Тип" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-      <ComboBox id="cbType" fx:id="cbType" maxWidth="1.7976931348623157E308" promptText="Выберите тип" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-         <GridPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </GridPane.margin>
-      </ComboBox>
       <Label text="Радиус" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <Label text="Масса (в массах земли)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <Label text="Кол-во спутников" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
       <Label text="Удаленность от земли (в  тыс. км)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-      <TextField id="tfRadius" fx:id="tfRadius" GridPane.rowIndex="6">
-         <GridPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </GridPane.margin>
-      </TextField>
       <TextField fx:id="tfAmount" GridPane.rowIndex="8">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -110,7 +110,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="btnDelete" mnemonicParsing="false" text="УНИЧТОЖИТЬ выбранную планету (удалить)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+      <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#Delete" text="УНИЧТОЖИТЬ выбранную планету (удалить)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>

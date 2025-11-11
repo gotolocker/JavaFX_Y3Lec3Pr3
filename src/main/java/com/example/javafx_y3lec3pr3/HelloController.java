@@ -27,12 +27,48 @@ public class HelloController {
 
     @FXML
     protected void btnShow_Click(ActionEvent actionEvent) {
-
+        if (planets.stream().count() <= 0) return;
         Alert info = new Alert(Alert.AlertType.INFORMATION);
         info.setTitle("Bestie");
-        info.setHeaderText("Who r ur Bestie?");
+        info.setHeaderText("Who is ur Bestie?");
+        Double maxRad = planets.get(0).getRadius(),
+                maxWeight = planets.get(0).getWeight(),
+                maxDistance = planets.get(0).getDistance();
+        int maxAmount = planets.get(0).getAmount();
+        String firstPlanet = planets.get(0).getName(),
+                maxRadPlanet = firstPlanet, maxWeightPlanet = firstPlanet,
+                maxDistancePlanet = firstPlanet, maxAmountPlanet = firstPlanet;
+        for (int i = 1; i < planets.toArray().length; i++) {
+            var planetNow = planets.get(i);
+            if (planetNow.getRadius() > maxRad) {
+                maxRad = planetNow.getRadius();
+                maxRadPlanet = planetNow.getName();
+            }
+            if (planetNow.getWeight() > maxWeight) {
+                maxWeight = planetNow.getWeight();
+                maxWeightPlanet = planetNow.getName();
+            }
+            if (planetNow.getDistance() > maxDistance) {
+                maxDistance = planetNow.getDistance();
+                maxDistancePlanet = planetNow.getName();
+            }
+            if (planetNow.getAmount() > maxAmount) {
+                maxAmount = planetNow.getAmount();
+                maxAmountPlanet = planetNow.getName();
+            }
+        }
 
-        info.setContentText("sth inside");
+        String result = String.format("""
+                Максимальный радиус у - %s (%.3f км)\
+                
+                Максимальная масса у - %s (%.3f масс земли)\
+                
+                Максимальное кол-во спутников у - %s (%d шт)\
+                
+                Максимальная удаленность от Земли у - %s (%.3f тыс. км)
+                """, maxRadPlanet, maxRad, maxWeightPlanet, maxWeight, maxAmountPlanet, maxAmount, maxDistancePlanet, maxDistance);
+
+        info.setContentText(result);
         info.show();
     }
 
@@ -52,6 +88,7 @@ public class HelloController {
         Platform.runLater(() ->{
             SetColumns();
         });
+
     }
 
     @FXML
@@ -79,6 +116,12 @@ public class HelloController {
             if (newPlanet == null) return;
             planets.add(newPlanet);
             tvMain.setItems(planets);
+
+            tfAmount.clear();
+            tfDistance.clear();
+            tfName.clear();
+            tfWeight.clear();
+            tfRadius.clear();
         }
     }
     @FXML
@@ -86,6 +129,7 @@ public class HelloController {
         ObservableList<Planet> selectedItems = tvMain.getSelectionModel().getSelectedItems();
         if (!selectedItems.isEmpty()){
             planets.remove(selectedItems);
+            tvMain.getItems().clear();
             tvMain.setItems(planets);
         }
     }
